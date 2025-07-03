@@ -1,0 +1,5 @@
+# django proyekt boshlash, nuqta bu turgan joyimni ifodalash uchun qo'yilgan
+django-admin startproject core .
+
+# proyektni ishga tushurish
+python manage.py runserver
