@@ -3,3 +3,9 @@ django-admin startproject core .
 
 # proyektni ishga tushurish
 python manage.py runserver
+
+# app yaratish uchun komanda
+python manage.py startapp <app_name>
+
+
+
