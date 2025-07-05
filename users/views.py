@@ -2,6 +2,4 @@ from django.shortcuts import render
 
 
 def index_view(request):
-    return render(request, 'index.html', context={
-        "name": "Sanjar", "age": 23
-    })
+    return render(request, 'index.html')
