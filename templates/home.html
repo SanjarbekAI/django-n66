@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<form action="" method="POST">
+    {% csrf_token %}
+    <label for="name"> Name
+        <input type="text" name="name" placeholder="Name: ">
+    </label>
+    <button type="submit">Send</button>
+</form>
+
+<hr>
+<hr>
+<h1>{{ name }}</h1>
+
+</body>
+</html>
