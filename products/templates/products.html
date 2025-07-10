@@ -89,17 +89,41 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 5px;
             overflow: hidden;
+            table-layout: fixed;
         }
 
         th, td {
             padding: 12px 15px;
             text-align: left;
             border-bottom: 1px solid #ddd;
+            border-right: 1px solid #eee;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* Column width distribution (12-column grid concept) */
+        th:nth-child(1), td:nth-child(1) { /* # column - 1/12 */
+            width: 8.33%;
+        }
+        th:nth-child(2), td:nth-child(2) { /* Name column - 5/12 */
+            width: 41.66%;
+        }
+        th:nth-child(3), td:nth-child(3) { /* Quantity column - 3/12 */
+            width: 25%;
+        }
+        th:nth-child(4), td:nth-child(4) { /* Actions column - 3/12 */
+            width: 25%;
         }
 
         th {
             background-color: var(--primary);
             color: white;
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        th:last-child, td:last-child {
+            border-right: none;
         }
 
         tr:hover {
@@ -111,6 +135,10 @@
             gap: 10px;
         }
 
+        .action-buttons a {
+            text-decoration: none;
+        }
+
         .btn {
             padding: 5px 10px;
             border: none;
@@ -120,6 +148,7 @@
             align-items: center;
             gap: 5px;
             font-size: 14px;
+            white-space: nowrap;
         }
 
         .btn-update {
@@ -178,17 +207,19 @@
                 <td>{{ product.0 }}</td>
                 <td>{{ product.1 }}</td>
                 <td>{{ product.2 }}</td>
-                <td class="action-buttons">
-                    <a href="{% url 'products:update' product_id=product.0 %}">
-                        <button class="btn btn-update" onclick="window.location.href='update-product.html'">
-                            <span>✏️</span> Update
-                        </button>
-                    </a>
-                    <a href="{% url 'products:delete' product_id=product.0 %}">
-                        <button class="btn btn-delete" onclick="window.location.href='delete-confirm.html'">
-                            <span>🗑️</span> Delete
-                        </button>
-                    </a>
+                <td>
+                    <div class="action-buttons">
+                        <a href="{% url 'products:update' product_id=product.0 %}">
+                            <button class="btn btn-update">
+                                <span>✏️</span> Update
+                            </button>
+                        </a>
+                        <a href="{% url 'products:delete' product_id=product.0 %}">
+                            <button class="btn btn-delete">
+                                <span>🗑️</span> Delete
+                            </button>
+                        </a>
+                    </div>
                 </td>
             </tr>
         {% endfor %}

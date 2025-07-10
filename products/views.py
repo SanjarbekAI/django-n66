@@ -5,13 +5,15 @@ from products.utils import generate_id, write, read
 
 def products_list(request):
     products = read(filename="products.csv")
-    context = {"products": products}
+    data = []
+    for product in products:
+        data.append(product.split(','))
+    context = {"products": data}
     return render(request, 'products.html', context)
 
 
 def add_product(request):
     if request.method == "POST":
-        print("Hellloooooooooo")
         name = request.POST.get('name')
         quantity = request.POST.get('quantity')
         new_id = generate_id(filename='products.csv')

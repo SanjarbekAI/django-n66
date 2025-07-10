@@ -6,8 +6,7 @@ def read(filename: str) -> list:
     path = f"data/{filename}"
     if os.path.exists(path=path):
         with open(file=path, mode="r", encoding="UTF-8") as file:
-            for line in list(csv.reader(file)):
-                print(line)
+            return list(file)
     return []
 
 
