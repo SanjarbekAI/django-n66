@@ -106,12 +106,15 @@
         th:nth-child(1), td:nth-child(1) { /* # column - 1/12 */
             width: 8.33%;
         }
+
         th:nth-child(2), td:nth-child(2) { /* Name column - 5/12 */
             width: 41.66%;
         }
+
         th:nth-child(3), td:nth-child(3) { /* Quantity column - 3/12 */
             width: 25%;
         }
+
         th:nth-child(4), td:nth-child(4) { /* Actions column - 3/12 */
             width: 25%;
         }
@@ -161,6 +164,11 @@
             color: white;
         }
 
+        .btn-more {
+            background-color: var(--secondary);
+            color: white;
+        }
+
         .btn-add {
             background-color: var(--primary);
             color: white;
@@ -178,17 +186,7 @@
 </head>
 <body>
 <div class="container">
-    <header>
-        <h1>Product Manager</h1>
-        <div class="header-links">
-            <a href="{% url 'products:list' %}">Products</a>
-            <a href="{% url 'products:add' %}">Add Product</a>
-        </div>
-        <div class="search-bar">
-            <input type="text" placeholder="Search products...">
-            <button>Search</button>
-        </div>
-    </header>
+    {% include 'layout/header.html' %}
 
     <a href="{% url 'products:add' %}" class="btn-add">+ Add New Product</a>
 
@@ -204,19 +202,24 @@
         <tbody>
         {% for product in products %}
             <tr>
-                <td>{{ product.0 }}</td>
-                <td>{{ product.1 }}</td>
-                <td>{{ product.2 }}</td>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.quantity }}</td>
                 <td>
                     <div class="action-buttons">
-                        <a href="{% url 'products:update' product_id=product.0 %}">
+                        <a href="{% url 'products:update' pk=product.id %}">
                             <button class="btn btn-update">
                                 <span>✏️</span> Update
                             </button>
                         </a>
-                        <a href="{% url 'products:delete' product_id=product.0 %}">
+                        <a href="{% url 'products:delete' pk=product.id %}">
                             <button class="btn btn-delete">
                                 <span>🗑️</span> Delete
+                            </button>
+                        </a>
+                        <a href="{% url 'products:detail' pk=product.id %}">
+                            <button class="btn btn-more">
+                                <span>ℹ️</span> More
                             </button>
                         </a>
                     </div>

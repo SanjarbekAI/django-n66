@@ -1,0 +1,14 @@
+<header>
+    <h1>Product Manager</h1>
+    <div class="header-links">
+        <a href="{% url 'products:list' %}">Products</a>
+        <a href="{% url 'products:add' %}">Add Product</a>
+    </div>
+    <div class="search-bar">
+        <form action="{% url 'products:list' %}" method="GET">
+            <input type="text" name="q" value="{{ request.GET.q }}" placeholder="Search products...">
+            <button>Search</button>
+        </form>
+
+    </div>
+</header>
